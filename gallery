@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Gallery with Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #uploadSection {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Gallery</h1>
+
+  <div id="uploadSection">
+    <input type="file" id="imageUpload" accept="image/*" multiple>
+  </div>
+
+  <div class="gallery" id="gallery">
+    <!-- Preloaded images -->
+    <img src="https://placekitten.com/300/200" alt="Kitten 1">
+    <img src="https://placekitten.com/301/200" alt="Kitten 2">
+    <img src="https://placekitten.com/302/200" alt="Kitten 3">
+  </div>
+
+  <script>
+    const imageUpload = document.getElementById('imageUpload');
+    const gallery = document.getElementById('gallery');
+
+    imageUpload.addEventListener('change', (event) => {
+      const files = event.target.files;
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          gallery.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+</body>
+</html>
