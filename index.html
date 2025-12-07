@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Simple Image Gallery</title>
+    <title>thefronc.com</title>
     <style>
         body {
             font-family: system-ui, Arial;
@@ -60,7 +60,7 @@
     </style>
 </head>
 <body>
-    <h1>Image gallery</h1>
+    <h1>Cool Images</h1>
     <div class="grid" id="gallery"></div>
 
     <div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" alt=""></div>
@@ -69,12 +69,18 @@
     // Put your image URLs here:
     const images = [
       // Examples - replace with your URLs
-      "https://www.dropbox.com/scl/fi/2412d4wma53p5zcztvqkr/IMG_5795.JPG?rlkey=e5ybcwizeq9l75pdqqwpa18hf&st=9m8t8po9&dl=1",
-        "https://www.dropbox.com/scl/fi/7d4u2bzoll31jyxujje84/IMG_5912.JPG?rlkey=0pw88a1ofbp1t7rv07ulynjt4&st=gs1siwk2&dl=1",
-      "https://picsum.photos/400",
+      "https://www.dropbox.com/scl/fi/e8vdbsxvh9m08ol0t0c27/IMG_5795.webp?rlkey=3uosgnx12fdldx1qe78fghlrv&st=s88u0zhk&dl=1",
+        "https://www.dropbox.com/scl/fi/l6vyl6dgpkceyh5rd5g99/IMG_5912.webp?rlkey=dl71zpx8p255lx6u4dlqkwnvd&st=2qh2pjku&dl=1",
+      "https://www.dropbox.com/scl/fi/numb1rr669xjgmbeqkra0/0003_0.jpg_flo.webp?rlkey=2g0t94jygo4ybou5bk6l3w5b8&st=x1sqf3dm&dl=1",
       // Dropbox example: link  -> change dl=0 to dl=1
       // Google Drive example: link -> use uc?export=view&id=FILEID
-    ];
+        ];
+
+        const captions = [
+            "Blossom",
+            "Door",
+            "Flo",
+        ];
 
     const gallery = document.getElementById('gallery');
 
@@ -83,8 +89,8 @@
       card.className = 'card';
       card.innerHTML = `
         <img loading="lazy" data-index="${i}" src="${url}" alt="Image ${i+1}">
-        <figcaption class="caption">Image ${i+1}</figcaption>
-      `;
+        <figcaption class="caption">${captions[i]}</figcaption>
+      `;   //Image ${i+1}   between > < to return to Image 1, Image 2, so forth
       card.querySelector('img').addEventListener('click', (e) => openLightbox(e.target.src, e.target.alt));
       gallery.appendChild(card);
     });
